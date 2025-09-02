@@ -13,15 +13,15 @@
   <body>
       <nav id="navbar">
         <button id="change-colour">🌙  Dark mode</button>
-        <h1 id="logo"><a href="{% url 'landing' %}" id="profile-link">Mayank Keshil</a></h1>
+        <h1 id="logo"><a href="{% url 'home' %}" id="profile-link">Mayank Keshil</a></h1>
         <a href="#" id="menu">≡</a>
         <ul id="desktop-view">
-          <li id="menu-item"><a href="{% url 'landing' %}#about">About</a></li>
+          <li id="menu-item"><a href="{% url 'home' %}#about">About</a></li>
           <li id="menu-item"><a href="{% url 'employers' %}">For employers</a></li>
           <li id="menu-item"><a href="{% url 'posts_list' %}">Posts</a></li>
         </ul>
         <div id="menu-view" class="hide">
-          <li id="menu-item"><a href="{% url 'landing' %}#about">About</a></li>
+          <li id="menu-item"><a href="{% url 'home' %}#about">About</a></li>
           <li id="menu-item"><a href="{% url 'employers'}">For employers</a></li>  
           <li id="menu-item"><a href="{% url 'posts_list' %}">Posts</a></li>
         </div>
