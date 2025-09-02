@@ -16,6 +16,16 @@
     margin:0px auto 50px auto;
     border:5px solid #33a2ff;
     border-radius:50%;
+    transition: transform 0.5s ease;
+}
+
+#me:hover {
+    transform:scale(1.05);
+}
+
+#me:active {
+    position:relative;
+    top:5px;
 }
 
 #degree {
@@ -63,10 +73,20 @@
 }
 
 .project-tile-wrapper {
-    border:4px solid black;
+    background:black;
+    padding:5px;
     border-radius:20px;
-    
     box-sizing:border-box;
+    transition:0.25s transform ease;
+}
+
+.project-tile-wrapper:hover {
+    transform:scale(1.05);
+}
+
+.project-tile-wrapper:click {
+    position:relative;
+    top:5px;
 }
 
 .project-tile {
