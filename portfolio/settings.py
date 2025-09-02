@@ -83,8 +83,7 @@ DATABASES = {
         'PASSWORD': 'Perfumepost19@',
         'HOST': 'db.tpbmpejdeiphyhkedgia.supabase.co',
         'PORT': '5432',
-        'OPTIONS': { 
-                    'sslmode': 'require'}
+        'OPTIONS': { 'sslmode': 'require' } 
     }
 }
 
