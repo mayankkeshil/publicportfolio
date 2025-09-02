@@ -2,7 +2,7 @@ const allItems =  document.querySelectorAll("*");
 const menuButton = document.getElementById("menu");
 const menuView = document.getElementById("menu-view");
 const pageWrapper = document.getElementById("page-wrapper");
-const pageWrapperItems = pageWrapper.querySelectorAll("*");
+const pageWrapperItems = pageWrapper.querySelectorAll("*:not(#copyright, footer)");
 const changeColourButton = document.getElementById("change-colour"); 
 const content = document.getElementById("content");
 
