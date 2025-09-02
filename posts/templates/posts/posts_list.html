@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}MK | Posts List{% endblock %}
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block content %}
+    <h2 style="grid-column: 2 / 3; text-align:center;">Posts List</h2>
+        {% for post in posts %}
+            <div style="grid-column: 2 / 3;">
+                <h2 style="margin-top:50px;"><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</h2>
+                <p>Created by {{ post.author.username }} on {{ post.created_at }}</p>
+            </div>    
+        {% endfor %}    
+{% endblock %}

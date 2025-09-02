@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}MK | {{ post.title }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="post-container">
+        <h1>{{ post.title }}</h2>
+        <p id="">Created by {{ post.author.username }} on {{ post.created_at }}</p>
+        {% if post.featured_image %}
+            <img src="{{ post.featured_image.url }}" alt="{{ post.alt_text }}" id="featured-image"/>
+        {% endif %}
+        <div id="description">{{ post.content|safe }}</div>
+        <div id="back"><a href="{% url 'posts_list' %}">Go back to post list</a></div>
+    </div>
+{% endblock %}
