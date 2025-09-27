@@ -5,7 +5,7 @@ const pageWrapper = document.getElementById("page-wrapper");
 const pageWrapperItems = pageWrapper.querySelectorAll("*:not(#copyright, footer)");
 const changeColourButton = document.getElementById("change-colour"); 
 const content = document.getElementById("content");
-const allBoxes = document.querySelector(".project-tile", "#academics", "#projects", "#qualifications" )
+const allBoxes = document.querySelector(".project-tile", "#academics", "#projects", "#certifications");
 
 
 if (!localStorage.getItem("theme")) {
