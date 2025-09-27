@@ -5,7 +5,7 @@ const pageWrapper = document.getElementById("page-wrapper");
 const pageWrapperItems = pageWrapper.querySelectorAll("*:not(#copyright, footer)");
 const changeColourButton = document.getElementById("change-colour"); 
 const content = document.getElementById("content");
-const allBoxes = document.querySelector(".project-tile", "#academics", "#projects", "#certifications");
+const allBoxes = document.querySelectorAll(".project-tile, #academics, #projects, #certifications");
 
 
 if (!localStorage.getItem("theme")) {
@@ -35,7 +35,9 @@ const applyTheme = () => {
             changeColourButton.textContent = "☀️ Light mode";
             console.log(`Dark mode: ${colour}`)
         })
-        allBoxes.style.background = "linear-gradient(black, black) padding-box, linear-gradient(45deg, #336dff, #33a2ff, #336dff) border-box"
+        allBoxes.forEach(box => {
+            box.style.background = "linear-gradient(black, black) padding-box, linear-gradient(45deg, #336dff, #33a2ff, #336dff) border-box";
+        });
     } else {
         pageWrapperItems.forEach(item => {
             item.style.backgroundColor = "";
@@ -43,7 +45,9 @@ const applyTheme = () => {
             changeColourButton.textContent = "🌙 Dark mode";
             console.log(`Dark mode: ${colour}`)
         })
-        allBoxes.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #336dff, #33a2ff, #336dff) border-box"
+        allBoxes.forEach(box => {
+            box.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #336dff, #33a2ff, #336dff) border-box";
+        })
     }
 };
 
