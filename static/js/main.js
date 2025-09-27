@@ -6,6 +6,11 @@ const pageWrapperItems = pageWrapper.querySelectorAll("*:not(#copyright, footer)
 const changeColourButton = document.getElementById("change-colour"); 
 const content = document.getElementById("content");
 
+
+if (!localStorage.getItem("theme")) {
+    localStorage.setItem("theme", "light");
+}
+
 console.log(menuView);
 let clicked = false;
 let colour = false;
@@ -20,9 +25,9 @@ const handleResize = () => {
     } 
 }
 
-changeColourButton.addEventListener("click", () => {
-    colour = !colour;
-    if (colour === true) {
+
+const applyTheme = () => {
+    if (localStorage.getItem("theme") === "light") {
         pageWrapperItems.forEach(item => {
             item.style.backgroundColor = "black";
             item.style.color = "white";
@@ -37,7 +42,11 @@ changeColourButton.addEventListener("click", () => {
             console.log(`Dark mode: ${colour}`)
         })
     }
+};
 
+changeColourButton.addEventListener("click", () => {
+    localStorage.setItem("theme", localStorage.getItem("theme") === "light" ? "dark" : "light");
+    applyTheme(); 
 });
 
 menuButton.addEventListener("click", () => {
@@ -53,7 +62,5 @@ menuButton.addEventListener("click", () => {
     };
 });
 
-
-
-
 window.addEventListener("resize", handleResize);
+applyTheme();
