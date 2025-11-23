@@ -1,0 +1,62 @@
+name: Azure Django Deploy
+
+on:
+  push:
+    branches:
+      - master  # Deploy when you push to master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Collect static files
+      run: |
+        python manage.py collectstatic --noinput
+
+    - name: Zip the project
+      run: zip -r portfolio.zip . -x "*.git*" "*.github*" "*.venv*"
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: mayankkeshil
+        slot-name: production
+        package: ./portfolio.zip
+
+    - name: Configure environment variables
+      run: |
+        az webapp config appsettings set \
+          --name mayankkeshil \
+          --resource-group portfolio-rg \
+          --settings \
+            DEBUG=False \
+            ALLOWED_HOSTS="mayankkeshil.azurewebsites.net,portfolio-75an.onrender.com" \
+            CSRF_TRUSTED_ORIGINS="https://mayankkeshil.azurewebsites.net,https://portfolio-75an.onrender.com" \
+            DB_NAME="postgres" \
+            DB_USER="postgres.tpbmpejdeiphyhkedgia" \
+            DB_PASSWORD="Perfumepost19@" \
+            DB_HOST="aws-1-eu-west-2.pooler.supabase.com" \
+            DB_PORT="5432"
+
+    - name: Restart Azure App Service
+      run: |
+        az webapp restart --name mayankkeshil --resource-group portfolio-rg
