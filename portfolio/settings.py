@@ -13,6 +13,12 @@ import os
 from django.conf import settings
 from django.conf.urls.static import static
 from pathlib import Path
+from django.http import HttpResponse
+
+def test_view(request):
+    origin = request.META.get('HTTP_ORIGIN')
+    referer = request.META.get('HTTP_REFERER')
+    return HttpResponse(f"Origin: {origin}, Referer: {referer}")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
