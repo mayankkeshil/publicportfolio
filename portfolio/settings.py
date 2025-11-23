@@ -30,6 +30,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['portfolio-75an.onrender.com', '127.0.0.1',
                  'mayankkeshil.azurewebsites.net']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://portfolio-75an.onrender.com',
+    'https://mayankkeshil.azurewebsites.net',  # Add this
+]
 
 # Application definition
 
