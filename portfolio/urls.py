@@ -29,7 +29,6 @@ urlpatterns = [
     path("posts/", include("posts.urls")),
     path("", views.home, name="home"),
     path("employers/", views.employers, name="employers"),
-    path('csrf-debug/', views.csrf_debug, name='csrf-debug'),
 ]
 
 if settings.DEBUG:

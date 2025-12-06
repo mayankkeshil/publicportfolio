@@ -15,6 +15,10 @@ from django.conf.urls.static import static
 from pathlib import Path
 from django.http import HttpResponse
 
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_KEY")
+
+
 def test_view(request):
     origin = request.META.get('HTTP_ORIGIN')
     referer = request.META.get('HTTP_REFERER')
@@ -52,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'ckeditor',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -147,6 +152,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-MEDIA_URL = '/media/'
+AWS_S3_ENDPOINT_URL = f'{SUPABASE_URL}/storage/v1/s3'
+AWS_ACCESS_KEY_ID = "supabase"
+AWS_SECRET_ACCESS_KEY = SUPABASE_KEY
+AWS_STORAGE_BUCKET_NAME = "media"
+AWS_S3_REGION_NAME = "us-east-1"
+AWS_S3_ADDRESSING_SYLE = "path"
+
+
+MEDIA_URL = f'{SUPABASE_URL}/storage/v1/object/public/media'
 MEDIA_ROOT = BASE_DIR / 'media'
