@@ -1,0 +1,139 @@
+
+#about, #project-section {
+    scroll-margin-top: 282px; /* Same as the navbar height */
+    animation:slide 2s ease-in-out;
+}
+
+.bold {
+    font-weight:bold;
+}
+.bigger {
+    font-size:1.35rem;
+}
+
+#me {
+    display:block;
+    margin:0px auto 50px auto;
+    border:5px solid #33a2ff;
+    border-radius:50%;
+    transition: transform 0.5s ease;
+}
+
+#me:hover {
+    transform:scale(1.05);
+}
+
+#me:active {
+    position:relative;
+    top:5px;
+}
+
+#degree {
+    text-align:center;
+    display:block;
+}
+
+#welcome {
+    text-align:center;
+    font-size:2.75rem;
+    animation:slide 2s ease-in-out;
+}
+
+#welcome-section {
+    grid-column: 1 / -1;
+}
+
+#about {
+    margin:50px auto;
+    grid-column: 2 / 3;
+    font-size:1.25rem;
+    max-width:1000px;
+}
+
+
+#about p {
+    margin-bottom:2.5rem;
+}
+
+#project-section {
+    grid-column: 2 / 3;
+}
+#project-intro {
+    font-weight:bold;
+    max-width:750px;
+    margin:75px auto;
+    text-align:center;
+    font-size:2rem;
+}
+
+#projects {
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:10px;
+}
+
+.project-tile-wrapper {
+    background:black;
+    padding:5px;
+    border-radius:20px;
+    box-sizing:border-box;
+    transition:0.25s transform ease;
+}
+
+.project-tile-wrapper:hover {
+    transform:scale(1.05);
+}
+
+.project-tile-wrapper:click {
+    position:relative;
+    top:5px;
+}
+
+.project-tile {
+    border-radius: 15px; 
+    border:7px solid transparent;
+    background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #336dff, #33a2ff, #336dff) border-box;
+    background-color:black; 
+    background-size: 200% 200%;
+    padding: 10px; 
+    height:100%;
+    animation:gradient infinite 5s ease-in-out;
+    box-sizing:border-box;
+}
+
+.project-title {
+    margin-bottom:15px;
+    font-size:1.4rem;
+}
+
+.description {
+    margin-bottom:10px;
+    font-size:1.2rem;
+}
+
+.publish-date {
+    margin-top:20px;
+    font-size:1.2rem;
+}
+
+.underline {
+    text-decoration:underline;
+}
+
+
+
+@media (max-width:1200px) {
+    #me {
+        width: 80%;
+        height:auto;
+        margin: 0 auto 50px auto;
+    }
+        
+    #projects {
+        display: flex;
+        flex-direction: column;
+        gap:70px;
+  }
+}
+
+

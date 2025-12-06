@@ -1,0 +1,10 @@
+Django==5.2.5
+Pillow==10.1.0
+django-ckeditor
+gunicorn==21.2.0
+psycopg2-binary==2.9.9
+whitenoise==6.5.0
+supabase
+django-storages
+boto3
+	

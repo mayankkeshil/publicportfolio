@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %} 
+    <link rel="stylesheet" href="{% static 'css/employers.css' %}">
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <div id="academics">
+        <div class="under-wrapper">
+            <h2>Academics</h2>
+            <ul>
+                <li>Predicted A-level grades: AAB (Maths, Economics and CS)</li>
+                <li>EPQ: How do emotions, long-term thinking, and personal beliefs influence human decisions? - <b>in progress</b></li>    
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="wrapper">   
+    <div id="projects">
+        <div class="under-wrapper">
+            <h2>Projects</h2>
+            <ul>
+                <li>WordPress post feature created using Django (Python). <a href="{% url 'posts_list' %}">Click here to read my post on it..</a></li>
+                <li>NEA: MayBuild (locally hosted website builder using dynamic templates)</li>
+                <ul>
+                    <li><b>- in progress, for now the landing page and sign-in/register functionality has been created using Django</b></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div> 
+<div class="wrapper">
+    <div id="certifications"> 
+        <div class="under-wrapper">  
+            <h2>Certifications:</h2>
+            <p>(<a href="https://www.freecodecamp.org/mayankkeshil"><u>View my freeCodeCamp profile here</u></a>)</p>
+            <ul>
+                <li>freeCodeCamp HTML and CSS (certified)</li>
+                <li>freeCodeCamp JS (~40% completed)</li>
+            </ul>
+        </div>
+    </div>
+</div> 
+{% endblock %}
