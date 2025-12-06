@@ -3,8 +3,8 @@ from django.core.files.storage import Storage
 from django.conf import settings
 from supabase import create_client
 
-class SupabaseStorage(Storage):
 
+class SupabaseStorage(Storage):
     def __init__(self):
         self.client = create_client(
             settings.SUPABASE_URL,
@@ -14,7 +14,9 @@ class SupabaseStorage(Storage):
 
     def _save(self, name, content):
         data = content.read()
-        result = self.client.storage.from_(self.bucket).upload(
+
+        # Upload to Supabase Storage
+        self.client.storage.from_(self.bucket).upload(
             path=name,
             file=data,
             upsert=True
@@ -26,3 +28,16 @@ class SupabaseStorage(Storage):
             f"{settings.SUPABASE_URL}/storage/v1/object/public/"
             f"{self.bucket}/{name}"
         )
+
+    def exists(self, name):
+        # Check if file exists in Supabase Storage
+        try:
+            resp = self.client.storage.from_(self.bucket).list(
+                path=os.path.dirname(name) or "",
+            )
+
+            filenames = [item['name'] for item in resp]
+            return os.path.basename(name) in filenames
+
+        except Exception:
+            return False
