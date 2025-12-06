@@ -159,8 +159,7 @@ AWS_ACCESS_KEY_ID = "supabase"
 AWS_SECRET_ACCESS_KEY = SUPABASE_KEY
 AWS_STORAGE_BUCKET_NAME = "media"
 AWS_S3_REGION_NAME = "us-east-1"
-AWS_S3_ADDRESSING_SYLE = "path"
+AWS_S3_ADDRESSING_STYLE = "path"
 
 
 MEDIA_URL = f'{SUPABASE_URL}/storage/v1/object/public/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
