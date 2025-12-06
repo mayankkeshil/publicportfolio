@@ -29,6 +29,7 @@ urlpatterns = [
     path("posts/", include("posts.urls")),
     path("", views.home, name="home"),
     path("employers/", views.employers, name="employers"),
+    path('test-storage/', views.test_storage),
 ]
 
 if settings.DEBUG:
