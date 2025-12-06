@@ -22,6 +22,7 @@ from django.views.generic import TemplateView
 from posts import views
 from posts import urls
 from posts.test_s3 import test_upload
+from posts.test_list import list_files
 
 
 urlpatterns = [
@@ -32,6 +33,7 @@ urlpatterns = [
     path("employers/", views.employers, name="employers"),
     path('test-storage/', views.test_storage),
     path("test-upload/", test_upload),
+    path("test-files/", list_files)
 
 ]
 
