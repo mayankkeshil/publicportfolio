@@ -2,6 +2,7 @@ import os
 from django.core.files.storage import Storage
 from django.conf import settings
 from supabase import create_client
+from supabase.storage.types import UploadResponse
 
 
 class SupabaseStorage(Storage):
@@ -12,42 +13,37 @@ class SupabaseStorage(Storage):
         )
         self.bucket = "media"
 
+    def exists(self, name):
+        """
+        Check if file exists in Supabase Storage
+        """
+        try:
+            resp = self.client.storage.from_(self.bucket).list(path=name)
+            return len(resp) > 0
+        except Exception:
+            return False
+
     def _save(self, name, content):
         data = content.read()
 
-        # Upload to Supabase Storage (correct syntax)
-        result = self.client.storage.from_(self.bucket).upload(
+        # First try uploading
+        resp: UploadResponse = self.client.storage.from_(self.bucket).upload(
             path=name,
-            file=data,
+            file=data
         )
 
-        # If file already exists, you must delete then upload again
-        if "error" in result and result["error"].get("status_code") == "409":
-            # File exists → delete and retry upload
+        # If file exists → Supabase returns 409 inside resp.error
+        if resp.error and resp.error.get("status_code") == "409":
+            # Remove existing file
             self.client.storage.from_(self.bucket).remove([name])
-            self.client.storage.from_(self.bucket).upload(
+
+            # Upload again
+            resp = self.client.storage.from_(self.bucket).upload(
                 path=name,
-                file=data,
+                file=data
             )
 
         return name
 
-
     def url(self, name):
-        return (
-            f"{settings.SUPABASE_URL}/storage/v1/object/public/"
-            f"{self.bucket}/{name}"
-        )
-
-    def exists(self, name):
-        # Check if file exists in Supabase Storage
-        try:
-            resp = self.client.storage.from_(self.bucket).list(
-                path=os.path.dirname(name) or "",
-            )
-
-            filenames = [item['name'] for item in resp]
-            return os.path.basename(name) in filenames
-
-        except Exception:
-            return False
+        return f"{settings.SUPABASE_URL}/storage/v1/object/public/{self.bucket}/{name}"
