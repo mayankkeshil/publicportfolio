@@ -7,4 +7,6 @@ whitenoise==6.5.0
 supabase
 django-storages
 boto3
+supabase>=2.0.0
+
 	

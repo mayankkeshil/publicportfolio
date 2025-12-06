@@ -152,7 +152,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+DEFAULT_FILE_STORAGE = "posts.supabase_storage.SupabaseStorage"
+
 
 AWS_S3_ENDPOINT_URL = f'{SUPABASE_URL}/storage/v1/s3'
 AWS_ACCESS_KEY_ID = os.getenv("SUPABASE_S3_ACCESS_KEY")
