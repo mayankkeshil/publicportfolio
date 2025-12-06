@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from posts import views
 from posts import urls
+from posts.test_s3 import test_upload
 
 
 urlpatterns = [
@@ -30,6 +31,8 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("employers/", views.employers, name="employers"),
     path('test-storage/', views.test_storage),
+    path("test-upload/", test_upload),
+
 ]
 
 if settings.DEBUG:
