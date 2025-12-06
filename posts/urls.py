@@ -7,4 +7,7 @@ from . import views
 urlpatterns = [
     path('', posts_list, name="posts_list"),
     path('<slug:slug>/', views.post_detail, name="post_detail"),
+    path('test-storage/', test_storage),
+
 ]
+

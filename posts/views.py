@@ -1,6 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm
 from .models import Post
+from django.http import HttpResponse
+from django.conf import settings
+
+def test_storage(request):
+    return HttpResponse(
+        f"default={settings.DEFAULT_FILE_STORAGE}, "
+        f"key={settings.AWS_SECRET_ACCESS_KEY}, "
+        f"url={settings.AWS_S3_ENDPOINT_URL}"
+    )
 
 def create_post(request):
     if request.method == 'POST': # If user submits form
