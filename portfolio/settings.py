@@ -162,5 +162,5 @@ AWS_S3_REGION_NAME = "us-east-1"
 AWS_S3_ADDRESSING_SYLE = "path"
 
 
-MEDIA_URL = f'{SUPABASE_URL}/storage/v1/object/public/media'
+MEDIA_URL = f'{SUPABASE_URL}/storage/v1/object/public/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
