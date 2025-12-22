@@ -7,6 +7,30 @@ const changeColourButton = document.getElementById("change-colour");
 const content = document.getElementById("content");
 const allBoxes = document.querySelectorAll(".project-tile, #academics, #projects, #certifications");
 
+console.log("ANALYTICS JS LOADED");
+
+function track(eventType, label = null) {
+    fetch("/analytics/track/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event_type: eventType,
+            page: window.location.pathname,
+            label: label
+        })
+    });
+}
+
+track("page_view");
+
+document.addEventListener("click", event => {
+    if (event.target.tagName === "A") {
+        track("click", event.target.href);
+    }
+})
+
 
 if (!localStorage.getItem("theme")) {
     localStorage.setItem("theme", "light");
