@@ -22,6 +22,3 @@ def track_event(request):
 
     return JsonResponse({"error": "POST only"}, status=400)
 
-def track_event(request):
-    print("TRACK EVENT CALLED")
-    return None
