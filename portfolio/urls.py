@@ -33,7 +33,7 @@ urlpatterns = [
     path("employers/", views.employers, name="employers"),
     path('test-storage/', views.test_storage),
     path("test-upload/", test_upload),
-    path("test-files/", list_files)
+    path("test-files/", list_files),
     path("analytics/", include("analytics.urls"))
 
 ]
