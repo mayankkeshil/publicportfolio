@@ -100,17 +100,25 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'postgres'),
-        'USER': os.environ.get('DB_USER', 'postgres.tpbmpejdeiphyhkedgia'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'Perfumepost19@'),
-        'HOST': os.environ.get('DB_HOST', 'aws-1-eu-west-2.pooler.supabase.com'),
-        'PORT': os.environ.get('DB_PORT', '5432'),
-        'OPTIONS': {'sslmode': 'require'},
+if os.getenv("DATABASE_URL") or os.getenv("DB_HOST"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('DB_NAME', 'postgres'),
+            'USER': os.environ.get('DB_USER', 'postgres.tpbmpejdeiphyhkedgia'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', 'Perfumepost19@'),
+            'HOST': os.environ.get('DB_HOST', 'aws-1-eu-west-2.pooler.supabase.com'),
+            'PORT': os.environ.get('DB_PORT', '5432'),
+            'OPTIONS': {'sslmode': 'require'},
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -151,7 +159,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
