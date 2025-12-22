@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mayank Keshil{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}
+    {% endblock %}
+  </head>
+  <body>
+      <nav id="navbar">
+        <button id="change-colour">🌙  Dark mode</button>
+        <h1 id="logo"><a href="{% url 'home' %}" id="profile-link">Mayank Keshil</a></h1>
+        <a href="#" id="menu">≡</a>
+        <ul id="desktop-view">
+          <li id="menu-item"><a href="{% url 'home' %}#about">About</a></li>
+          <li id="menu-item"><a href="{% url 'employers' %}">For employers</a></li>
+          <li id="menu-item"><a href="{% url 'posts_list' %}">Posts</a></li>
+        </ul>
+        <div id="menu-view" class="hide">
+          <li id="menu-item"><a href="{% url 'home' %}#about">About</a></li>
+          <li id="menu-item"><a href="{% url 'employers' %}">For employers</a></li>  
+          <li id="menu-item"><a href="{% url 'posts_list' %}">Posts</a></li>
+        </div>
+      </nav>
+    <div id="page-wrapper">
+      <main>
+        <div id="content">
+          {% block content %}{% endblock %}
+        </div>
+      </main>
+    </div>
+    <footer>
+      <p id="copyright">Designed by Mayank Keshil, 2025</p>
+    </footer>
+    
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

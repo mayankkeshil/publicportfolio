@@ -1,0 +1,39 @@
+#post-container {
+    padding:30px;
+    grid-column: 2 / 3;
+}
+
+#details {
+    margin-top:10px;
+}
+
+#featured-image {
+    width:100%;
+    height:auto;
+    object-fit:cover;
+    display:block;
+    margin:50px auto;
+    border-radius:20px;
+    border:3px black solid;
+}
+
+#description {
+    margin-top:50px;
+}
+
+#back {
+    margin-top:30px;
+    text-decoration:underline;
+    color:#336dff;
+}
+
+
+
+
+
+@media (min-width:1200px) {
+    #featured-image {
+        max-width:60%;
+    }
+}
+

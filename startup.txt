@@ -1,0 +1,2 @@
+gunicorn portfolio.wsgi
+
