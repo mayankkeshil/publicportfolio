@@ -22,3 +22,12 @@ def track_event(request):
 
     return JsonResponse({"error": "POST only"}, status=400)
 
+def dashboard_view(request):
+    page_views = Event.objects.filter(event_type="page_view").count()
+    clicks = Event.objects.filter(event_type="click").count()
+
+    context = {
+        "page_views": page_views,
+        "clicks": clicks,
+    }
+    return render(request, "dashboard.html", context)

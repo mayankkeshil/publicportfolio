@@ -23,6 +23,7 @@ from posts import views
 from posts import urls
 from posts.test_s3 import test_upload
 from posts.test_list import list_files
+from analytics.views import dashboard_view
 
 
 urlpatterns = [
@@ -34,7 +35,8 @@ urlpatterns = [
     path('test-storage/', views.test_storage),
     path("test-upload/", test_upload),
     path("test-files/", list_files),
-    path("analytics/", include("analytics.urls"))
+    path("analytics/", include("analytics.urls")),
+    path("dashboard/", dashboard_view),
 
 ]
 

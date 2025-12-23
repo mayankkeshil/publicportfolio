@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %} 
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock %}
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<p>Total page views: {{ page_views }}</p>
+<p>Total clicks: {{ clicks }}</p>
