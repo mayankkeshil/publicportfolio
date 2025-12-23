@@ -36,7 +36,7 @@ urlpatterns = [
     path("test-upload/", test_upload),
     path("test-files/", list_files),
     path("analytics/", include("analytics.urls")),
-    path("dashboard/", dashboard_view),
+    path("dashboard/", dashboard_view, name="dashboard"),
 
 ]
 
