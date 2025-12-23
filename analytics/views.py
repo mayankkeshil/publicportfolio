@@ -30,4 +30,4 @@ def dashboard_view(request):
         "page_views": page_views,
         "clicks": clicks,
     }
-    return render(request, "dashboard.html", context)
+    return render(request, "analytics/dashboard.html", context)
